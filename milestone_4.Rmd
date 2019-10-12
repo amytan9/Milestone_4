@@ -1,0 +1,39 @@
+---
+title: "Milestone_4"
+author: "Amy Tan"
+date: "10/11/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(foreign)
+library(haven)
+library(tidyverse)
+```
+
+```{r reading_in_data, echo=FALSE}
+
+#loading datasets in raw-data folder using terminal, and then using read_dta function for Stata files
+
+stanforddata <- read_dta("raw-data/SEDA_county_long_CS_v21.dta")
+tract_covariates <- read_dta("raw-data/tract_covariates.dta")
+
+#getting a sense of what variables I want to include in my ggplot
+
+view(stanforddata)
+view(tract_covariates)
+```
+
+```{r plot, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+
+d <- tract_covariates %>% filter(!is.na(share_white2000)) %>% filter(!is.na(hhinc_mean2000)) %>% filter(state==25)
+
+p<- ggplot(data=d, mapping= aes(x = share_white2000, y=hhinc_mean2000))+
+  geom_point(alpha=.2)+
+  geom_jitter()+
+  geom_smooth()+
+  labs(x="Proportion of White People", y="Mean Household Income", title="Share of White People v. Mean Household Income", subtitle="Data from 2000, State of Massachusetts", caption="Source: Opportunity Atlas, https://opportunityinsights.org/data/")
+p
+
+
