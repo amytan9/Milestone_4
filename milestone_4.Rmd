@@ -27,7 +27,18 @@ view(tract_covariates)
 
 ```{r plot, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
 
-d <- tract_covariates %>% filter(!is.na(share_white2000)) %>% filter(!is.na(hhinc_mean2000)) %>% filter(state==25)
+#creating a filtered tibble with only the data from the state of Massachusetts that does not include NA for the two variables of interest
+
+d <- tract_covariates %>%
+  filter(!is.na(share_white2000)) %>%
+  
+  #filtering out NA values
+  
+  filter(!is.na(hhinc_mean2000)) %>%
+  
+  #found FIPS code for Massachusetts
+  
+  filter(state==25)
 
 p<- ggplot(data=d, mapping= aes(x = share_white2000, y=hhinc_mean2000))+
   geom_point(alpha=.2)+
