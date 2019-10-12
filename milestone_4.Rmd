@@ -40,11 +40,28 @@ d <- tract_covariates %>%
   
   filter(state==25)
 
+#remember to create a new object for ggplot
+
 p<- ggplot(data=d, mapping= aes(x = share_white2000, y=hhinc_mean2000))+
+  
+#I chose geom_point because I wanted a scatterplot of all the datapoints in Massachusetts to compare how the proportions of white people might have a correlation with the mean household income
+  
   geom_point(alpha=.2)+
+  
+#I used geom_jitter because a lot of the points were too condensed together, so this would allow me to see the individual points more clearly
+  
   geom_jitter()+
+  
+#this creates a linear model that fits a line to the overall trend.
+  
   geom_smooth()+
+  
+#I added some captions and titles to the ggplot to make sure I cite everything and make the graph understandable
+  
   labs(x="Proportion of White People", y="Mean Household Income", title="Share of White People v. Mean Household Income", subtitle="Data from State of Massachusetts in 2000", caption="Source: Opportunity Atlas, https://opportunityinsights.org/data/")
+
+#don't forget to print the output!
+
 p
 
 
