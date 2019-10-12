@@ -33,7 +33,7 @@ p<- ggplot(data=d, mapping= aes(x = share_white2000, y=hhinc_mean2000))+
   geom_point(alpha=.2)+
   geom_jitter()+
   geom_smooth()+
-  labs(x="Proportion of White People", y="Mean Household Income", title="Share of White People v. Mean Household Income", subtitle="Data from 2000, State of Massachusetts", caption="Source: Opportunity Atlas, https://opportunityinsights.org/data/")
+  labs(x="Proportion of White People", y="Mean Household Income", title="Share of White People v. Mean Household Income", subtitle="Data from State of Massachusetts in 2000", caption="Source: Opportunity Atlas, https://opportunityinsights.org/data/")
 p
 
 
